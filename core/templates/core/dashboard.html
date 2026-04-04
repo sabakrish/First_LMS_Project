@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LMS Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<nav class="navbar navbar-dark bg-dark px-3">
+    <span class="navbar-brand">LMS</span>
+
+    <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button class="btn btn-danger">Logout</button>
+    </form>
+</nav>
+
+<div class="container mt-4">
+
+    <h2>Welcome {{ request.user.username }}</h2>
+
+    <div class="row mt-4">
+
+        <!-- Courses -->
+        <div class="col-md-6">
+            <div class="card p-3">
+                <h4>Your Courses</h4>
+                <ul class="list-group">
+                    {% for enrollment in enrollments %}
+                        <li class="list-group-item">
+                            {{ enrollment.course.course_name }}
+                        </li>
+                    {% empty %}
+                        <li class="list-group-item">No courses</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <!-- Assignments -->
+        <div class="col-md-6">
+            <div class="card p-3">
+                <h4>Your Assignments</h4>
+                <ul class="list-group">
+                    {% for assignment in assignments %}
+                        <li class="list-group-item">
+                            <strong>{{ assignment.title }}</strong><br>
+                            Due: {{ assignment.due_date }}
+
+                            <br>
+                            <a class="btn btn-sm btn-primary mt-2"
+                               href="{% url 'submit_assignment' assignment.id %}">
+                               Submit
+                            </a>
+
+                            <br><br>
+
+                            {% for sub in submissions %}
+                                {% if sub.assignment.id == assignment.id %}
+                                    <span class="text-success">
+                                        Grade: {{ sub.grade|default:"Not graded" }}
+                                    </span><br>
+                                    <span class="text-muted">
+                                        {{ sub.feedback|default:"No feedback" }}
+                                    </span>
+                                {% endif %}
+                            {% endfor %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Dashboard</title>
+</head>
+<body>
+<form method="post" action="{% url 'logout' %}">
+    {% csrf_token %}
+    <button type="submit">Logout</button>
+</form>
+
+
+
+<h1>Welcome {{ request.user.username }}</h1>
+
+<h2>Your Courses:</h2>
+<ul>
+    {% for enrollment in enrollments %}
+        <li>{{ enrollment.course.course_name }}</li>
+    {% empty %}
+        <li>No courses enrolled</li>
+    {% endfor %}
+</ul>
+
+<hr>
+
+<h2>Your Assignments:</h2>
+<ul>
+    {% for assignment in assignments %}
+        <li>
+            {{ assignment.title }} ({{ assignment.course.course_name }})
+            - Due: {{ assignment.due_date }}
+
+            <a href="{% url 'submit_assignment' assignment.id %}">
+                Submit
+            </a>
+        </li>
+    {% empty %}
+        <li>No assignments</li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>

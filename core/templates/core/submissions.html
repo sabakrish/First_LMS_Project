@@ -1,0 +1,15 @@
+<h2>Submissions for {{ assignment.title }}</h2>
+
+<ul>
+    {% for submission in submissions %}
+        <li>
+            {{ submission.student.username }} -
+            <a href="{{ submission.file.url }}">Download</a>
+
+            | Grade: {{ submission.grade|default:"Not graded" }}
+            | Feedback: {{ submission.feedback|default:"None" }}
+
+            <a href="{% url 'grade_submission' submission.id %}">Grade</a>
+        </li>
+    {% endfor %}
+</ul>
