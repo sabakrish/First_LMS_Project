@@ -30,7 +30,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'first-lms-project-5.onrender.com',
     'localhost',
-    '127.0.0.1'
+    '127.0.0.1',
 ]
 
 
