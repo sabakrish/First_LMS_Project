@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
-
+import os
 
 from pathlib import Path
 
@@ -27,7 +27,12 @@ SECRET_KEY = 'django-insecure-ai7q)*0&)(tg-grembcu(csq%q2z##f*0vh@&6cdfl3-#l*z8(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'first-lms-project-5.onrender.com',
+    'localhost',
+    '127.0.0.1'
+]
+
 
 
 # Application definition
@@ -133,3 +138,12 @@ LOGOUT_REDIRECT_URL = '/login/'
 #Enable File Uploads
 MEDIA_URL = '/media/'
 MEDIA_ROOT = 'media/'
+
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+    ...
+]
