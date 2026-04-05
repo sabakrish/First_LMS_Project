@@ -1,10 +1,13 @@
 from django.urls import path
 from . import views
+from django.shortcuts import redirect
+
 urlpatterns = [
     #student dashboard
     path('dashboard/', views.student_dashboard, name='dashboard'),
-    
-    #Submit assignment
+    path('', lambda request: redirect('login')),
+         
+      #Submit assignment
     path('submit/<int:assignment_id>/', views.submit_assignment, name='submit_assignment'),
     #Instructor dashboard
     path('instructor/', views.instructor_dashboard, name='instructor_dashboard'),
