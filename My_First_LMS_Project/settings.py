@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-ai7q)*0&)(tg-grembcu(csq%q2z##f*0vh@&6cdfl3-#l*z8(
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'first-lms-project-5.onrender.com',
+    'first-lms-project-6.onrender.com',
     'localhost',
     '127.0.0.1',
 ]
