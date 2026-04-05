@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-ai7q)*0&)(tg-grembcu(csq%q2z##f*0vh@&6cdfl3-#l*z8('
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     'first-lms-project-6.onrender.com',
