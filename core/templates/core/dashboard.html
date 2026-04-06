@@ -21,9 +21,38 @@
     <div class="p-4 w-100">
 
         <h2>Welcome {{ request.user.username }}</h2>
+            <div class="row mb-4">
 
-        <div class="row mt-4">
+                <div class="col-md-3">
+                    <div class="card text-center p-3 shadow">
+                        <h5>Total Courses</h5>
+                        <h2>{{ total_courses }}</h2>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-center p-3 shadow">
+                        <h5>Total Assignments</h5>
+                        <h2>{{ total_assignments }}</h2>
+                    </div>
+                </div>
 
+                <div class="col-md-3">
+                    <div class="card text-center p-3 shadow">
+                        <h5>Submitted</h5>
+                        <h2 class="text-success">{{ submitted }}</h2>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card text-center p-3 shadow">
+                        <h5>Pending</h5>
+                        <h2 class="text-danger">{{ pending }}</h2>
+                    </div>
+                </div>
+
+            </div>
+
+          
             <!-- Courses -->
             <div class="col-md-6">
                 <div class="card shadow p-3">

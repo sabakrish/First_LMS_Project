@@ -14,6 +14,28 @@ def student_dashboard(request):
     
     # Get enrollments for logged-in student
     enrollments = Enrollment.objects.filter(student=user)
+    courses = [en.course for en in enrollments]
+    assignments = Assignment.objects.filter(course__in=courses)
+    submissions = Submission.objects.filter(student=user)
+
+    # 🔥 ANALYTICS
+    total_courses = len(courses)
+    total_assignments = assignments.count()
+    submitted = submissions.count()
+    pending = total_assignments - submitted
+
+    return render(request, 'core/dashboard.html', {
+        'enrollments': enrollments,
+        'assignments': assignments,
+        'submissions': submissions,
+
+        # analytics
+        'total_courses': total_courses,
+        'total_assignments': total_assignments,
+        'submitted': submitted,
+        'pending': pending,
+    })
+
 
      # Extract courses
     courses = [en.course for en in enrollments]
@@ -26,8 +48,10 @@ def student_dashboard(request):
         'enrollments': enrollments,
         'assignments':assignments,
      
-              
+    
     })
+              
+    
 
 #submit Assignment
 
